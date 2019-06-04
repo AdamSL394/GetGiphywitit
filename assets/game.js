@@ -1,40 +1,80 @@
-    var topics =["dogs", "cats", "basketball", "fashion", "art", "music", "nature", "travel", "fitness", "concerts"];
+var topics = ["dogs", "cats", "basketball", "fashion", "art", "music", "nature", "travel", "fitness", "concerts"];
 
-    
-    var queryURL="http://api.giphy.com/v1/gifs/random?api_key=SFCYakJUdnF5QsIgZWwX29D3FKB66cmk&tag=&rating=G"
+function displayImages(){
+
+    var topic= $(this).attr("data-name");
+
+var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + topic + "&api_key=SFCYakJUdnF5QsIgZWwX29D3FKB66cmk&limit=5"
 
     $.ajax({
         url: queryURL,
         method: "GET"
-    }).then(function(response) {
-        console.log(response)
-        $("#topicsButton").on("click",function(){
-            // console.log(response.data.url)
-            var image=$("<img>").attr( "src", response.data.image_url )
-            // console.log(image)
-            $("#topicsButton").append(image)
-        })
+    }).then(function (response) {
+        var results= response.data
+       
+       console.log(response);
+    
+        for ( var i = 0; i <results.length;i++){
+            
+            var gifDiv=$("<div>");
+
+            var p = $("<p>").text("Rating: " + results[i].rating)
+      
+
+            var image = $("<img>").attr("src", results[i].images.fixed_height.url);
+            console.log(results[i].images.fixed_height.url)
+            $(gifDiv).append(p);
+            $(gifDiv).append(image);
+
+            $("#topicsButton").append(gifDiv);
+            
+           
+        
+        }
+    })
+}
+
+function makingButtons() {
+    console.log("hi")
+    $("#topicsButton").empty();
+    for (var i = 0; i < topics.length; i++) {
+        var buttonTopics = $("<button>");
+        buttonTopics.addClass("theme");
+        buttonTopics.attr("data-name", topics[i]);
+        buttonTopics.text(topics[i]);
+        $("#topicsButton").append(buttonTopics);
+    }
+}
+
+
     
 
-    function makingButtons(){
-        for(var i = 0; i < topics.length; i++) {
-            var buttonTopics = $("<button>");
-            buttonTopics.addClass("topics");
-            buttonTopics.attr("data-name", topics[i])
-            buttonTopics.text(topics[i]);
-            $("#topicsButton").append(buttonTopics );
-        }
-    }
-makingButtons()
 
 
-   $("#add-image").on("click", function(){
+
+$("#add-image").on("click", function (event) {
     event.preventDefault();
-    $("#topicsButton").empty();
-       var topic = $("#giphy-input").val().trim();
-       topics.push(topic);
-       makingButtons()
-   })
+    var userInput = $("#giphy-input").val();
+    topics.push(userInput);
+    makingButtons();
+    
+
+    })
+    makingButtons();
+
+
+
+
+
+
+
+
+
+
+
+//    })
+   $(document).on("click",".theme",displayImages);
    
-})
+
+
 
