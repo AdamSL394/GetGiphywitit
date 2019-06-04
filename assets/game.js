@@ -9,43 +9,32 @@
     }).then(function(response) {
         console.log(response)
         $("#topicsButton").on("click",function(){
-            console.log(response.data.url)
+            // console.log(response.data.url)
             var image=$("<img>").attr( "src", response.data.image_url )
-            console.log(image)
+            // console.log(image)
             $("#topicsButton").append(image)
         })
     
 
     function makingButtons(){
-
-
         for(var i = 0; i < topics.length; i++) {
-            
             var buttonTopics = $("<button>");
-           
             buttonTopics.addClass("topics");
-
-            
+            buttonTopics.attr("data-name", topics[i])
             buttonTopics.text(topics[i]);
-            
             $("#topicsButton").append(buttonTopics );
         }
-
     }
 makingButtons()
 
 
+   $("#add-image").on("click", function(){
+    event.preventDefault();
+    $("#topicsButton").empty();
+       var topic = $("#giphy-input").val().trim();
+       topics.push(topic);
+       makingButtons()
+   })
    
-   
-    })
-    // response()
-    // console.log("hi")
-    
+})
 
-
-
-
-
-
-
-// })
