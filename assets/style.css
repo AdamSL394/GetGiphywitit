@@ -2,9 +2,16 @@
    height: 500px !important;
 } */
 body{
-    background-color: blanchedalmond;
+    background-color: beige;
 }
 .theme:hover{
     color:dodgerblue;
     
 }
+.card{
+    background-color: burlywood;
+}
+/* #topicsButton{
+    display: flex;
+    justify-content: center;
+} */

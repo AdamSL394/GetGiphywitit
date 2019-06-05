@@ -24,15 +24,15 @@ var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + topic + "&api_key=SFC
     })
 }
 function makingButtons() {
-    $("#topicsButton").empty();
+    $("#topButton").empty();
     for (var i = 0; i < topics.length; i++) {
         var buttonTopics = $("<button>");
         buttonTopics.addClass("theme");
         buttonTopics.attr("data-name", topics[i]);
-        buttonTopics.attr("data-state","still");
-        // buttonTopics.attr("data-active","active");
+        buttonTopics.attr("data-state", "still");
+        buttonTopics.attr("data-active","active");
         buttonTopics.text(topics[i]);
-        $("#topicsButton").append(buttonTopics);
+        $("#topButton").append(buttonTopics);
     }
 }
 
@@ -47,9 +47,12 @@ $("#add-image").on("click", function (event) {
    $(document).on("click",".theme",displayImages);
    
     $(document).on("click",".gif",function(){
-        console.log("hi")
-        var state=$(this).attr("data-state");
+        var state=$(".theme").attr("data-state");
         console.log(state);
+        if( state==="still"){
+            console.log("hi")
+            $(".theme").attr("src",results[i].images.fixed_height_still.url );
+        }
     })
 
 
