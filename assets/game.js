@@ -1,10 +1,8 @@
 var topics = ["Dogs", "Cats", "Basketball", "Fashion", "Art", "Music", "Nature", "Travel", "Fitness", "Concerts"];
 
 function displayImages(){
-
     var topic= $(this).attr("data-name");
-
-var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + topic + "&api_key=SFCYakJUdnF5QsIgZWwX29D3FKB66cmk&limit=10"
+    var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + topic + "&api_key=SFCYakJUdnF5QsIgZWwX29D3FKB66cmk&limit=10"
 
     $.ajax({
         url: queryURL,
@@ -15,11 +13,15 @@ var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + topic + "&api_key=SFC
         for ( var i = 0; i <results.length;i++){
             var gifDiv=$("<div>");
             var p = $("<p>").text("Rating: " + results[i].rating);
-            var image = $("<img>").attr("src", results[i].images.fixed_height.url);
-            image.addClass("gif")
+            var image = $("<img>").attr("src", results[i].images.fixed_height_still.url);
+            image.addClass("gif");
+            image.attr("data-state", "still");
+            image.attr("data-still", results[i].images.fixed_height_still.url);
+            image.attr("data-active", results[i].images.fixed_height.url);
             $(gifDiv).append(p);
             $(gifDiv).append(image);
             $("#topicsButton").append(gifDiv);
+            
         }
     })
 }
@@ -29,8 +31,6 @@ function makingButtons() {
         var buttonTopics = $("<button>");
         buttonTopics.addClass("theme");
         buttonTopics.attr("data-name", topics[i]);
-        buttonTopics.attr("data-state", "still");
-        buttonTopics.attr("data-active","active");
         buttonTopics.text(topics[i]);
         $("#topButton").append(buttonTopics);
     }
@@ -42,17 +42,21 @@ $("#add-image").on("click", function (event) {
     topics.push(userInput);
     makingButtons();
 })
-    makingButtons();
 
-   $(document).on("click",".theme",displayImages);
-   
-    $(document).on("click",".gif",function(){
-        var state=$(".theme").attr("data-state");
-        console.log(state);
-        if( state==="still"){
-            console.log("hi")
-            $(".theme").attr("src",results[i].images.fixed_height_still.url );
-        }
-    })
+makingButtons();
+$(document).on("click",".theme",displayImages);
+
+$(document).on("click",".gif",function(){
+    var state=$(this).attr("data-state");
+    if( state==="still"){ 
+        $(this).attr("src",$(this).attr("data-active"));
+        $(this).attr("data-state","animate");
+    }
+    else{
+        $(this).attr("src",$(this).attr("data-still"));
+        $(this).attr("data-state","still");
+    }
+})
+
 
 
