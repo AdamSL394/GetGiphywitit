@@ -6,7 +6,7 @@ You need to git pull this repo to your desktop using git clone . and the url fro
 
 ## Running Tests/Instructions
 Open the file in  your browser (preferably google chrome) to test the code.
-This will show a page with buttons and an input for adding new button topics. When the buttons are clicked on gifs 5 gips will be brought back under that category. Clicking on the gips will start and stop the animation. 
+This will show a page with buttons and an input for adding new button topics. When the buttons are clicked on  5 gifs will be brought back under that category. Clicking on the gifs will start and stop the animation. 
 
 ## Built with:
 <ol>
@@ -23,4 +23,4 @@ The following will get up and running locally.
 Author
 Adam Lehrer
 
-![Get Giphy With It](/assets/images/Trivia_Game.png)
+![Get Giphy With It](assets/images/background.png)
