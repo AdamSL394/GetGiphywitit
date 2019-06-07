@@ -1,20 +1,43 @@
 
 body{
-    background-color: whitesmoke;
+    background-image: url("https://cdn11.bigcommerce.com/s-sq9zkarfah/images/stencil/original/products/73822/151095/Dbz-Dragon-Ball-Z-Goku-Super-Saiyan-Decal-Sticker__01944.1510985908.jpg?c=2&imbypass=on");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: bottom; 
+    background-position: left; 
+    z-index: 2;
+    
 }
 .theme:hover{
     color:dodgerblue;
     
 }
+#giphy-input{
+    margin-right: 60px;
+    color:yellow;
+    border:2px solid blue;
+}
+label{
+    color:orange;
+    font-size: 24px;
+}
+
 .card{
     background-color: transparent;
 }
+.color{
+    font-family: cursive;
+    font-size: 28px;
+    color: orange;
+}
 #topicsButton{
-justify-content: center;
+justify-content: left;
+
 }
 @media screen and (max-width: 700px) {
     body {
-      background-color: lightgreen;
+      background-image: yellow !important;
+      z-index: 3;
     
     }   
 } 

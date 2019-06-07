@@ -23,4 +23,4 @@ The following will get up and running locally.
 Author
 Adam Lehrer
 
-![Get Giphy With It]()
+![Get Giphy With It](/assets/images/Trivia_Game.png)
