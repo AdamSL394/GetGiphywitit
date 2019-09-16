@@ -67,41 +67,12 @@ $(document).on("click", ".gif", function () {
     }
 })
 
-function getCategories() {
-    let queryURL = "https://www.eventbriteapi.com/v3/categories/?token=B3PPYGTJOHKVLZ7I7A4S"
-    $.ajax({
-        url: queryURL,
-        method: "GET"
-    }).then(function (response) {
-        for(let i = 0; i<response.categories.length; i++){
-            let name = $("<button>")
-            name.attr("data-id", response.categories[i].id)
-            name.addClass("alignment")
-            name.html( response.categories[i].name)
-           $(".dropdown-menu").prepend(name)
-        }
-    })
-}
 
 
-
+$(document).on("click", ".alignment",function (event){
+    event.preventDefault()
+    
+})
 
 getCategories()
 
-$(document).on("click", ".theme", function () {
-    let location = $("#location").val();
-    console.log(location)
-    let category = ""
-
-    let queryURL = `https://cors-anywhere.herokuapp.com/https://www.eventbriteapi.com/v3/events/search/?location.address=${location}&categories=101&token=B3PPYGTJOHKVLZ7I7A4S`
-
-    $.ajax({
-        url: queryURL,
-        method: "GET"
-    }).then(function (response) {
-        console.log(response)
-        //    let imageTag = $("<img>").attr("src", (response[0].url))
-        //     $(".card-body").append(imageTag)
-
-    })
-})
