@@ -9,7 +9,6 @@ function displayImages() {
         method: "GET"
     }).then(function (response) {
         var results = response.data
-        console.log(response);
         for (var i = 0; i < results.length; i++) {
             var gifDiv = $("<div>");
             var p = $("<p>").text("Rating: " + results[i].rating);
@@ -29,10 +28,11 @@ function displayImages() {
         }
     })
 }
+
 function makingButtons() {
     $("#topButton").empty();
     for (var i = 0; i < topics.length; i++) {
-        var buttonTopics = $("<button>");
+        let buttonTopics = $("<button>");
         buttonTopics.addClass("theme");
         buttonTopics.attr("data-name", topics[i]);
         buttonTopics.text(topics[i]);
@@ -40,9 +40,10 @@ function makingButtons() {
     }
 }
 
-$("#add-image").on("click", function (event) {
+$(document).on("click","#add-image", function(event) {
     event.preventDefault();
     var userInput = $("#giphy-input").val().trim();
+    console.log(userInput)
     if (userInput == "") {
         alert("Please Choose your Favorite Dragon Ball Z Character!")
         return false;
@@ -52,8 +53,9 @@ $("#add-image").on("click", function (event) {
     }
 })
 
-makingButtons();
-$(document).on("click", ".theme", displayImages);
+$(document).on("click", ".theme", function (){
+    displayImages()
+});
 
 $(document).on("click", ".gif", function () {
     var state = $(this).attr("data-state");
@@ -67,12 +69,14 @@ $(document).on("click", ".gif", function () {
     }
 })
 
+$(document).ready(function (){
+    makingButtons();
 
+})
 
 $(document).on("click", ".alignment",function (event){
     event.preventDefault()
     
 })
 
-getCategories()
 

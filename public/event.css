@@ -14,4 +14,8 @@
 .cardHeading{
     text-align: center;
 }
+.alignment{
+    border: 1px solid lightgray;
+    text-align: center;
+}
 

@@ -7,7 +7,7 @@ $(document).ready(function () {
         for (let i = 0; i < response.categories.length; i++) {
             let name = $("<button>")
             name.attr("data-id", response.categories[i].id)
-            name.addClass("alignment")
+            name.addClass("alignment btn btn-info")
             name.html(response.categories[i].name)
             $(".dropdown-menu").prepend(name)
         }
@@ -17,7 +17,7 @@ $(document).ready(function () {
 $(document).on("click", ".alignment", function () {
     let location = $("#pac-input").val().trim();
     let category = ($(this).attr("data-id"))
-    let queryURL = `https://cors-anywhere.herokuapp.com/https://www.eventbriteapi.com/v3/events/search/?start_date.range_start=2019-09-17T00:00:01Z&location.latitude=37.717550599999996&location.longitude=-122.4708578&categories=${category}&expand=venue&location.within=100mi&token=B3PPYGTJOHKVLZ7I7A4S`
+    let queryURL = `https://cors-anywhere.herokuapp.com/https://www.eventbriteapi.com/v3/events/search/?start_date.range_start=2019-09-17T00:00:01Z&location.address=${location}&categories=${category}&expand=venue&location.within=100mi&token=B3PPYGTJOHKVLZ7I7A4S`
     // let queryURL = 'https://cors-anywhere.herokuapp.com/https://www.eventbriteapi.com/v3/events/search/?sort_by=date&categories=103&location.latitude=37.717550599999996&location.longitude=-122.4708578&location.within=100mi&token=B3PPYGTJOHKVLZ7I7A4S'ocation.address=${location}
     $.ajax({
         url: queryURL,
@@ -33,11 +33,16 @@ $(document).on("click", ".alignment", function () {
             heading.addClass("cardHeading")
             let image = $("<img>").attr("src", data[i].logo.url)
             let written = $("<p>").text(data[i].description.text.substring(0, 200) + "...")
+            let save = $("<button>")
+            save.addClass("save btn btn-danger")
+            save.text("save")
 
-            card.append(heading)
-            card.append(image)
-            card.append(written)
-            $("#pictures").append(card)
+            
+            card.append(heading);
+            card.append(image);
+            card.append(written);
+            card.append(save);
+            $("#pictures").append(card);
         }
         if (image === "null") {
             console.log("hi")
@@ -45,5 +50,9 @@ $(document).on("click", ".alignment", function () {
     })
 })
 
-$()
+$(document).on("click", ".save",function(){
+    console.log("hi ")
+})
+
+
 
