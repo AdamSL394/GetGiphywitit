@@ -1,0 +1,17 @@
+.topHalf{
+    width:960px;
+    margin:0 auto;
+    border: 1px solid lightgray;
+}
+.outline{
+    width:960px;
+    margin:0 auto;
+}
+.card{
+    width: 18rem;
+    float: left;
+}
+.cardHeading{
+    text-align: center;
+}
+

@@ -17,8 +17,8 @@ $(document).ready(function () {
 $(document).on("click", ".alignment", function () {
     let location = $("#pac-input").val().trim();
     let category = ($(this).attr("data-id"))
-    // let queryURL = `https://cors-anywhere.herokuapp.com/https://www.eventbriteapi.com/v3/events/search/?start_date.range_start=2019-09-17T00:00:01Z&location.address=${location}&categories=${category}&expand=venue&token=B3PPYGTJOHKVLZ7I7A4S`
-    let queryURL = 'https://cors-anywhere.herokuapp.com/https://www.eventbriteapi.com/v3/events/search/?high_affinity_categories=103&token=B3PPYGTJOHKVLZ7I7A4S'
+    let queryURL = `https://cors-anywhere.herokuapp.com/https://www.eventbriteapi.com/v3/events/search/?start_date.range_start=2019-09-17T00:00:01Z&location.latitude=37.717550599999996&location.longitude=-122.4708578&categories=${category}&expand=venue&location.within=100mi&token=B3PPYGTJOHKVLZ7I7A4S`
+    // let queryURL = 'https://cors-anywhere.herokuapp.com/https://www.eventbriteapi.com/v3/events/search/?sort_by=date&categories=103&location.latitude=37.717550599999996&location.longitude=-122.4708578&location.within=100mi&token=B3PPYGTJOHKVLZ7I7A4S'ocation.address=${location}
     $.ajax({
         url: queryURL,
         method: "GET"
@@ -30,6 +30,7 @@ $(document).on("click", ".alignment", function () {
             let card = $("<div>")
             card.addClass("card")
             let heading = $("<h2>").text(data[i].name.text)
+            heading.addClass("cardHeading")
             let image = $("<img>").attr("src", data[i].logo.url)
             let written = $("<p>").text(data[i].description.text.substring(0, 200) + "...")
 
