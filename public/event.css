@@ -18,4 +18,10 @@
     border: 1px solid lightgray;
     text-align: center;
 }
+.a{
+    justify-content: center;
+}
+.hide{
+    visibility: hidden; 
+}
 
