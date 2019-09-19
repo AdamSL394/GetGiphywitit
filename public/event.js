@@ -17,7 +17,6 @@ $(document).ready(function () {
 $(document).on("click", ".alignment", function () {
     // $(".hide").style.visibility = "visible"
     document.getElementById("loader").style.visibility="visible";
-    console.log("a")
     let location = $("#pac-input").val().trim();
     let category = ($(this).attr("data-id"))
     let queryURL = `https://cors-anywhere.herokuapp.com/https://www.eventbriteapi.com/v3/events/search/?start_date.range_start=2019-09-17T00:00:01Z&location.address=${location}&categories=${category}&expand=venue&location.within=100mi&token=B3PPYGTJOHKVLZ7I7A4S`
@@ -35,9 +34,11 @@ $(document).on("click", ".alignment", function () {
             let heading = $("<h3>").text(data[i].name.text)
             heading.addClass("cardHeading")
             let image = $("<img>").attr("src", data[i].logo.url)
+            image.addClass("image")
             let written = $("<p>").text(data[i].description.text.substring(0, 200) + "...")
+            written.addClass("aboutMe")
             let save = $("<button>")
-            save.addClass("save btn btn-danger")
+            save.addClass("saved btn btn-danger")
             save.text("save")
             card.append(heading);
             card.append(image);
@@ -52,14 +53,16 @@ $(document).on("click", ".alignment", function () {
     })
 })
 
-$(document).on("click", ".save",function(){
-    // let a = $(".card")
+$(document).on("click",".saved", function(){
+    let body = {
+     title : $(this).parent(".card").children(".cardHeading").text(),
+     paragraph : ($(this).parent(".card").children(".aboutMe").text()),
+     image : $(this).parent(".card").children(".image").attr("src")
+    } 
 
-    
-    console.log($("#loader").slideUp('slow'))
-    let b = $(this).val()
-    let c = $(this).val()
+    $.post("/api/post",body,function(data){
+
+    })
 })
-
 
 

@@ -1,4 +1,4 @@
-let mysql = require("mysql")
+const mysql = require("mysql")
 
 let connection = mysql.createConnection({
     host: "localhost",
@@ -19,7 +19,7 @@ function addToDb() {
     console.log("Inserting a new product...\n");
     connection.query("INSERT INTO events Set ?",
         {
-            heading: "hihih",
+            heading: "jojoj",
             body: "there",
             created_at: "2019-10-10"
         }, function (err, res) {
